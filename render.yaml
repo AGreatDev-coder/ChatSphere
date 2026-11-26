@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: chatsphere
+    env: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        value: chatsphere_super_secret_jwt_key_2026_capstone
+      - key: MONGODB_URI
+        sync: false
