@@ -99,7 +99,7 @@ if (fs.existsSync(clientDist)) {
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
-if (!process.env.VERCEL && process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV !== 'test') {
   server.listen(PORT, () => {
     console.log(`[ChatSphere Server] Running on http://localhost:${PORT} in ${process.env.NODE_ENV || 'development'} mode`);
   });
