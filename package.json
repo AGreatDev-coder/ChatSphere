@@ -1,13 +1,22 @@
 {
   "name": "chatsphere-real-time-chat",
   "version": "1.0.0",
-  "description": "ChatSphere - Real-Time Chat Application with private and group rooms, unread counts via aggregation, Node.js EventEmitter, and Admin RBAC",
+  "description": "ChatSphere - Real-Time Chat Application (Unified Full-Stack Deployment on Vercel)",
   "scripts": {
     "start": "node server/server.js",
+    "build": "cd client && npm install && npm run build",
     "seed": "node server/src/utils/seed.js",
     "test:backend": "node server/src/utils/testBackend.js",
-    "test:e2e": "node server/src/utils/testE2E.js",
-    "build:client": "cd client && npm run build"
+    "test:e2e": "node server/src/utils/testE2E.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.5",
+    "socket.io": "^4.8.1"
   },
   "keywords": [
     "mern",
@@ -18,6 +27,6 @@
     "eventemitter",
     "rbac"
   ],
-  "author": "Capstone Team",
+  "author": "AGreatDev-coder",
   "license": "ISC"
 }
