@@ -1,5 +1,6 @@
 // Standard Fetch API wrapper with Authorization headers and error handling
-const API_BASE = '/api';
+const SERVER_URL = import.meta.env.VITE_SERVER_URL || '';
+const API_BASE = SERVER_URL ? `${SERVER_URL}/api` : '/api';
 
 const getHeaders = () => {
   const token = localStorage.getItem('chatsphere_token');

@@ -2,13 +2,15 @@ import { io } from 'socket.io-client';
 
 let socket = null;
 
+const SOCKET_URL = import.meta.env.VITE_SERVER_URL || '/';
+
 // Initialize socket connection verifying JWT during handshake
 export const connectSocket = (token) => {
   if (socket) {
     socket.disconnect();
   }
 
-  socket = io('/', {
+  socket = io(SOCKET_URL, {
     auth: {
       token,
     },

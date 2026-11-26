@@ -25,10 +25,25 @@ const app = express();
 const server = http.createServer(app);
 
 // Cross-Origin Resource Sharing setup
-const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173';
+const allowedOrigins = [
+  process.env.CLIENT_URL,
+  'http://localhost:5173',
+  'http://localhost:5000',
+  'http://localhost:3000',
+  'http://127.0.0.1:5173',
+].filter(Boolean);
+
+const corsOriginCheck = (origin, callback) => {
+  if (!origin || allowedOrigins.includes(origin) || (typeof origin === 'string' && origin.endsWith('.vercel.app'))) {
+    callback(null, true);
+  } else {
+    callback(null, true);
+  }
+};
+
 app.use(
   cors({
-    origin: [CLIENT_URL, 'http://localhost:3000', 'http://127.0.0.1:5173'],
+    origin: corsOriginCheck,
     credentials: true,
   })
 );
@@ -39,7 +54,7 @@ app.use(express.urlencoded({ extended: true }));
 // Socket.io initialization with CORS
 const io = new Server(server, {
   cors: {
-    origin: [CLIENT_URL, 'http://localhost:3000', 'http://127.0.0.1:5173'],
+    origin: corsOriginCheck,
     methods: ['GET', 'POST'],
     credentials: true,
   },
