@@ -1,5 +1,6 @@
 // Standard Fetch API wrapper with Authorization headers and error handling
-const SERVER_URL = import.meta.env.VITE_SERVER_URL || '';
+const rawUrl = import.meta.env.VITE_SERVER_URL || '';
+const SERVER_URL = rawUrl ? rawUrl.replace(/\/+$/, '') : '';
 const API_BASE = SERVER_URL ? `${SERVER_URL}/api` : '/api';
 
 const getHeaders = () => {
